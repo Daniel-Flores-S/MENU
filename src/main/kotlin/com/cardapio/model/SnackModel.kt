@@ -1,13 +1,8 @@
 package com.cardapio.model
 
-import jakarta.persistence.Column
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
+import jakarta.persistence.*
 
+@Entity(name = "snack")
 data class SnackModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +23,7 @@ data class SnackModel(
     @ManyToOne
     @JoinColumn(name = "category_id ")
     var category: CategoryModel? = null,
+
+//    @OneToMany(mappedBy = "snack")
+//    var variants: List<VariantModel> = emptyList()
 )

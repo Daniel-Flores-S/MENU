@@ -23,13 +23,20 @@ repositories {
 }
 
 dependencies {
+	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+	implementation("org.flywaydb:flyway-core:9.16.0")
+
 	compileOnly("org.projectlombok:lombok")
+
 	runtimeOnly("org.postgresql:postgresql")
+
 	annotationProcessor("org.projectlombok:lombok")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

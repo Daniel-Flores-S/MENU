@@ -1,7 +1,7 @@
 package com.cardapio.model
 
-import com.cardapio.model.CompanyModel
-import com.mercadolivro.enums.Status
+import com.cardapio.enums.Status
+import com.mercadolivro.enums.Errors
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -20,22 +20,22 @@ data class CategoryModel(
     @Column
     var button_svg: String,
 
-    @ManyToOne
-    @JoinColumn(name = "company_id ")
-    var company: CompanyModel? = null,
-
     @Column(name = "created_at")
     var createdAt: LocalDateTime? = LocalDateTime.now(),
 
     @Column
-    var type : String? = null,
+    var type: String? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "company_id ")
+    var company: CompanyModel? = null,
 ) {
     @Column
     @Enumerated(EnumType.STRING)
     var status: Status? = null
         set(value) {
             if (field == Status.CANCELADO || field == Status.DELETADO)
-                println("Não é possível alterar o status de um registro cancelado ou deletado")
+                println(Errors.ML102.message.format(field) + ' ' + Errors.ML102.code)
 
             field = value
         }
@@ -45,11 +45,12 @@ data class CategoryModel(
         title: String,
         pdv_route: String,
         button_svg: String,
-        company: CompanyModel? = null,
         createdAt: LocalDateTime? = LocalDateTime.now(),
+        type: String? = null,
+        company: CompanyModel? = null,
         status: Status?
     ) :
-            this(id, title, pdv_route, button_svg, company, createdAt) {
+            this(id, title, pdv_route, button_svg, createdAt, type, company) {
         this.status = status
     }
 }

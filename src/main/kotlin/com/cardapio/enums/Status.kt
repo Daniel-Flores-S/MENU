@@ -1,4 +1,4 @@
-package com.mercadolivro.enums
+package com.cardapio.enums
 
 
 enum class Status {

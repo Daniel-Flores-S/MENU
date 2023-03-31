@@ -38,4 +38,9 @@ data class CompanyModel(
     @Column
     var company_name: String,
 
-    )
+//    @OneToMany(mappedBy = "company")
+//    var categories: List<CategoryModel> = emptyList(),
+//
+//    @OneToMany(mappedBy = "company")
+//    var variants: List<VariantModel> = emptyList()
+)
